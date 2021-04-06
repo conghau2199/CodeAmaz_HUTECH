@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CODEAMAZModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BAIHOC">
+    <Key>
+      <PropertyRef Name="MABH" />
+    </Key>
+    <Property Name="MABH" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TENBH" Type="nvarchar(max)" />
+    <Property Name="NOIDUNGBH" Type="nvarchar" MaxLength="150" />
+    <Property Name="MAKHOAHOC" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="BINHLUANKHOAHOC">
+    <Key>
+      <PropertyRef Name="ID_COMMENT" />
+    </Key>
+    <Property Name="ID_COMMENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERNAME_CMT" Type="varchar" MaxLength="50" />
+    <Property Name="MAKH_CMT" Type="varchar" MaxLength="20" />
+    <Property Name="HOVATEN_CMT" Type="nvarchar" MaxLength="150" />
+    <Property Name="ANHDAIDIEN_CMT" Type="nvarchar" MaxLength="150" />
+    <Property Name="NOIDUNG_CMT" Type="nvarchar(max)" />
+    <Property Name="TIME_CMT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CHANGE_PASS">
+    <Key>
+      <PropertyRef Name="ID_CHANGE" />
+    </Key>
+    <Property Name="ID_CHANGE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERNAME_CHANGE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OLDPASSWORD" Type="varchar" MaxLength="50" />
+    <Property Name="NEWPASSWORD" Type="varchar" MaxLength="50" />
+    <Property Name="CONFIRMNEWPASSWORD" Type="varchar" MaxLength="50" />
+    <Property Name="TIMECHANGE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CHUDE">
+    <Key>
+      <PropertyRef Name="MACD" />
+    </Key>
+    <Property Name="MACD" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TENCD" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="DANGKIKHOAHOC">
+    <Key>
+      <PropertyRef Name="ID_DANGKI" />
+    </Key>
+    <Property Name="ID_DANGKI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERNAME_DK" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MAKHOAHOC" Type="varchar" MaxLength="20" />
+    <Property Name="TENKHOAHOC" Type="nvarchar" MaxLength="200" />
+    <Property Name="TG" Type="nvarchar" MaxLength="50" />
+    <Property Name="ANHKH" Type="nvarchar" MaxLength="150" />
+    <Property Name="TIME_DK" Type="datetime" />
+  </EntityType>
+  <EntityType Name="KHOAHOC">
+    <Key>
+      <PropertyRef Name="MAKH" />
+    </Key>
+    <Property Name="MAKH" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TENKH" Type="nvarchar" MaxLength="200" />
+    <Property Name="TACGIA" Type="nvarchar" MaxLength="50" />
+    <Property Name="GIA" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ANHKHOAHOC" Type="nvarchar" MaxLength="150" />
+    <Property Name="SOBAIGIANG" Type="int" />
+    <Property Name="MUCTIEU" Type="nvarchar(max)" />
+    <Property Name="MOTANGAN" Type="nvarchar(max)" />
+    <Property Name="MOTAFULL" Type="nvarchar(max)" />
+    <Property Name="ANHMOTA" Type="nvarchar" MaxLength="150" />
+    <Property Name="MACD" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LOGIN">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+      <PropertyRef Name="PASSWORD" />
+    </Key>
+    <Property Name="USERNAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HOVATEN" Type="nvarchar" MaxLength="150" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="SDT" Type="nvarchar" MaxLength="50" />
+    <Property Name="NGAYSINH" Type="date" />
+    <Property Name="GIOITINH" Type="nvarchar" MaxLength="15" />
+    <Property Name="DIACHI" Type="nvarchar" MaxLength="250" />
+    <Property Name="ANHDAIDIEN" Type="nvarchar" MaxLength="150" />
+    <Property Name="ID_QUYEN" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="QUYEN_USER">
+    <Key>
+      <PropertyRef Name="ID_QUYEN" />
+    </Key>
+    <Property Name="ID_QUYEN" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="TENQUYEN" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__KHOAHOC__MACD__3D5E1FD2">
+    <End Role="CHUDE" Type="Self.CHUDE" Multiplicity="1" />
+    <End Role="KHOAHOC" Type="Self.KHOAHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUDE">
+        <PropertyRef Name="MACD" />
+      </Principal>
+      <Dependent Role="KHOAHOC">
+        <PropertyRef Name="MACD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BAIHOC_KHOAHOC">
+    <End Role="KHOAHOC" Type="Self.KHOAHOC" Multiplicity="0..1" />
+    <End Role="BAIHOC" Type="Self.BAIHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOAHOC">
+        <PropertyRef Name="MAKH" />
+      </Principal>
+      <Dependent Role="BAIHOC">
+        <PropertyRef Name="MAKHOAHOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BINHLUANKHOAHOC_KHOAHOC">
+    <End Role="KHOAHOC" Type="Self.KHOAHOC" Multiplicity="0..1" />
+    <End Role="BINHLUANKHOAHOC" Type="Self.BINHLUANKHOAHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOAHOC">
+        <PropertyRef Name="MAKH" />
+      </Principal>
+      <Dependent Role="BINHLUANKHOAHOC">
+        <PropertyRef Name="MAKH_CMT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DANGKIKHOAHOC_KHOAHOC">
+    <End Role="KHOAHOC" Type="Self.KHOAHOC" Multiplicity="0..1" />
+    <End Role="DANGKIKHOAHOC" Type="Self.DANGKIKHOAHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOAHOC">
+        <PropertyRef Name="MAKH" />
+      </Principal>
+      <Dependent Role="DANGKIKHOAHOC">
+        <PropertyRef Name="MAKHOAHOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LOGIN_QUYEN_USER">
+    <End Role="QUYEN_USER" Type="Self.QUYEN_USER" Multiplicity="0..1" />
+    <End Role="LOGIN" Type="Self.LOGIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUYEN_USER">
+        <PropertyRef Name="ID_QUYEN" />
+      </Principal>
+      <Dependent Role="LOGIN">
+        <PropertyRef Name="ID_QUYEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CODEAMAZModelStoreContainer">
+    <EntitySet Name="BAIHOC" EntityType="Self.BAIHOC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BINHLUANKHOAHOC" EntityType="Self.BINHLUANKHOAHOC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHANGE_PASS" EntityType="Self.CHANGE_PASS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHUDE" EntityType="Self.CHUDE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DANGKIKHOAHOC" EntityType="Self.DANGKIKHOAHOC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHOAHOC" EntityType="Self.KHOAHOC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOGIN" EntityType="Self.LOGIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QUYEN_USER" EntityType="Self.QUYEN_USER" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__KHOAHOC__MACD__3D5E1FD2" Association="Self.FK__KHOAHOC__MACD__3D5E1FD2">
+      <End Role="CHUDE" EntitySet="CHUDE" />
+      <End Role="KHOAHOC" EntitySet="KHOAHOC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BAIHOC_KHOAHOC" Association="Self.FK_BAIHOC_KHOAHOC">
+      <End Role="KHOAHOC" EntitySet="KHOAHOC" />
+      <End Role="BAIHOC" EntitySet="BAIHOC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BINHLUANKHOAHOC_KHOAHOC" Association="Self.FK_BINHLUANKHOAHOC_KHOAHOC">
+      <End Role="KHOAHOC" EntitySet="KHOAHOC" />
+      <End Role="BINHLUANKHOAHOC" EntitySet="BINHLUANKHOAHOC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DANGKIKHOAHOC_KHOAHOC" Association="Self.FK_DANGKIKHOAHOC_KHOAHOC">
+      <End Role="KHOAHOC" EntitySet="KHOAHOC" />
+      <End Role="DANGKIKHOAHOC" EntitySet="DANGKIKHOAHOC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LOGIN_QUYEN_USER" Association="Self.FK_LOGIN_QUYEN_USER">
+      <End Role="QUYEN_USER" EntitySet="QUYEN_USER" />
+      <End Role="LOGIN" EntitySet="LOGIN" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,44 @@
+﻿@using CodeAmaz.Security
+@using CodeAmaz.Models
+@{
+	ViewBag.Title = "KhoaHocCuaToi";
+	Layout = "~/Views/Shared/_Layout_Custom.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Khóa học của tôi</title>
+	<link href="~/Content/css/MyCourse.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="banner-mc"></div>
+	<div class="content-mc">
+		<p id="text-banner">Học viên: </p>
+		<p id="name-banner">@LoginSecurity.UserName.HOVATEN</p>
+		<p id="title-content">Khóa học trọn đời</p>
+
+		<div class="content">
+			@{ var i = 0;
+				List<DANGKIKHOAHOC> myCourse = new List<DANGKIKHOAHOC>();
+				foreach (DANGKIKHOAHOC mc in Model)
+				{
+					myCourse.Add(mc);
+					i++;
+					if (mc.USERNAME_DK == LoginSecurity.UserName.USERNAME)
+					{
+						<div class="course-content">
+							<div class="anh-khoahoc"><img src="~/Content/img/KhoaHoc/@mc.ANHKH" /></div>
+							<p class="ten-khoahoc">@mc.TENKHOAHOC</p>
+							<p class="tacgia-khoahoc">@mc.TG</p>
+							<p class="start"><a href="~/Course/LessonList/@mc.MAKHOAHOC">► Vào học ngay</a></p>
+							<span class="tientrinh">0%</span>
+						</div>
+					}
+				}
+			}
+		</div>
+	</div>
+</body>
+</html>
+

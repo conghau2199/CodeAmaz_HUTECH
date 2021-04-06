@@ -1,0 +1,89 @@
+﻿@using CodeAmaz.Security
+@using CodeAmaz.Models
+@{
+	ViewBag.Title = "QuanLyTaiKhoan";
+	Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Quản lý tài khoản</title>
+	<link href="~/Content/css/Admin.css" rel="stylesheet" />
+	<link href="~/Content/css/CourseManage.css" rel="stylesheet" />
+</head>
+<body>
+	@if (LoginSecurity.UserName.ID_QUYEN == "ADMIN")
+	{
+		<div class="form-info1">
+			<h1 id="title-edit">Quản Lý Tài Khoản / User</h1>
+			<h4 id="title-list">Danh sách User:</h4>
+			<b style="margin-left: 50px">Username</b>
+			<b class="title-list2">Họ tên</b>
+			<b style="margin-left: 200px">Email</b>
+			<b style="margin-left: 250px">SDT</b>
+			<b class="title-list2">Quyền</b>
+			<hr />
+			<form class="list-user">
+				@{ var i = 0;
+					List<LOGIN> listUser = new List<LOGIN>();
+					foreach (LOGIN user in Model)
+					{
+						listUser.Add(user);
+						i++;
+						if (user.ID_QUYEN != "ADMIN")
+						{
+							<div class="list-user-content">
+								<p class="content">@user.USERNAME</p>
+								<p class="content1">@user.HOVATEN</p>
+								<p class="content2">@user.EMAIL</p>
+								<p class="content3">@user.SDT</p>
+
+								@if(user.ID_QUYEN == null)
+								{
+									@Html.DropDownListFor(m => user.ID_QUYEN, new List<SelectListItem>
+									{								
+									new SelectListItem {Text = "MEMBER"},
+									new SelectListItem {Text = "QTV"}
+									},
+									new { @class = "content4", @Value = @user.ID_QUYEN })
+								}
+								else if(user.ID_QUYEN == "QTV")
+								{
+									@Html.DropDownListFor(m => user.ID_QUYEN, new List<SelectListItem>
+									{								
+									new SelectListItem {Text = user.ID_QUYEN},
+									new SelectListItem {Text = "MEMBER"}
+									},
+									new { @class = "content4", @Value = @user.ID_QUYEN })
+								}
+								else
+									{
+									@Html.DropDownListFor(m => user.ID_QUYEN, new List<SelectListItem>
+									{								
+									new SelectListItem {Text = user.ID_QUYEN},
+									new SelectListItem {Text = "QTV"}
+									},
+									new { @class = "content4", @Value = @user.ID_QUYEN })
+								}
+								<input id="submit1" type="submit" value="Cập nhật" style="float: left" />
+								<input id="submit2" type="submit" value="Xóa User" style="float: left" />
+								<br /> <hr style="clear: both" />
+							</div>
+
+						}
+					}
+				}
+			</form>
+		</div>
+	}
+	else
+	{
+		<div class="form-info">
+			<p id="title-edit">Bạn không có quyền truy cập tính năng này!!</p>
+		</div>
+	}
+</body>
+</html>
+
+

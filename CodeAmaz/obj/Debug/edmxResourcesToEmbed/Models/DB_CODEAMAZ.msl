@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CODEAMAZModelStoreContainer" CdmEntityContainer="DB_CODEAMAZ">
+    <EntitySetMapping Name="CHUDEs">
+      <EntityTypeMapping TypeName="CODEAMAZModel.CHUDE">
+        <MappingFragment StoreEntitySet="CHUDE">
+          <ScalarProperty Name="MACD" ColumnName="MACD" />
+          <ScalarProperty Name="TENCD" ColumnName="TENCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHOAHOCs">
+      <EntityTypeMapping TypeName="CODEAMAZModel.KHOAHOC">
+        <MappingFragment StoreEntitySet="KHOAHOC">
+          <ScalarProperty Name="ANHMOTA" ColumnName="ANHMOTA" />
+          <ScalarProperty Name="SOBAIGIANG" ColumnName="SOBAIGIANG" />
+          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+          <ScalarProperty Name="TENKH" ColumnName="TENKH" />
+          <ScalarProperty Name="TACGIA" ColumnName="TACGIA" />
+          <ScalarProperty Name="GIA" ColumnName="GIA" />
+          <ScalarProperty Name="ANHKHOAHOC" ColumnName="ANHKHOAHOC" />
+          <ScalarProperty Name="MUCTIEU" ColumnName="MUCTIEU" />
+          <ScalarProperty Name="MOTANGAN" ColumnName="MOTANGAN" />
+          <ScalarProperty Name="MOTAFULL" ColumnName="MOTAFULL" />
+          <ScalarProperty Name="MACD" ColumnName="MACD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOGINs">
+      <EntityTypeMapping TypeName="CODEAMAZModel.LOGIN">
+        <MappingFragment StoreEntitySet="LOGIN">
+          <ScalarProperty Name="ANHDAIDIEN" ColumnName="ANHDAIDIEN" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="ID_QUYEN" ColumnName="ID_QUYEN" />
+          <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+          <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="HOVATEN" ColumnName="HOVATEN" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QUYEN_USER">
+      <EntityTypeMapping TypeName="CODEAMAZModel.QUYEN_USER">
+        <MappingFragment StoreEntitySet="QUYEN_USER">
+          <ScalarProperty Name="TENQUYEN" ColumnName="TENQUYEN" />
+          <ScalarProperty Name="ID_QUYEN" ColumnName="ID_QUYEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHANGE_PASS">
+      <EntityTypeMapping TypeName="CODEAMAZModel.CHANGE_PASS">
+        <MappingFragment StoreEntitySet="CHANGE_PASS">
+          <ScalarProperty Name="TIMECHANGE" ColumnName="TIMECHANGE" />
+          <ScalarProperty Name="CONFIRMNEWPASSWORD" ColumnName="CONFIRMNEWPASSWORD" />
+          <ScalarProperty Name="NEWPASSWORD" ColumnName="NEWPASSWORD" />
+          <ScalarProperty Name="OLDPASSWORD" ColumnName="OLDPASSWORD" />
+          <ScalarProperty Name="USERNAME_CHANGE" ColumnName="USERNAME_CHANGE" />
+          <ScalarProperty Name="ID_CHANGE" ColumnName="ID_CHANGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DANGKIKHOAHOCs">
+      <EntityTypeMapping TypeName="CODEAMAZModel.DANGKIKHOAHOC">
+        <MappingFragment StoreEntitySet="DANGKIKHOAHOC">
+          <ScalarProperty Name="TIME_DK" ColumnName="TIME_DK" />
+          <ScalarProperty Name="ANHKH" ColumnName="ANHKH" />
+          <ScalarProperty Name="TG" ColumnName="TG" />
+          <ScalarProperty Name="TENKHOAHOC" ColumnName="TENKHOAHOC" />
+          <ScalarProperty Name="MAKHOAHOC" ColumnName="MAKHOAHOC" />
+          <ScalarProperty Name="USERNAME_DK" ColumnName="USERNAME_DK" />
+          <ScalarProperty Name="ID_DANGKI" ColumnName="ID_DANGKI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAIHOCs">
+      <EntityTypeMapping TypeName="CODEAMAZModel.BAIHOC">
+        <MappingFragment StoreEntitySet="BAIHOC">
+          <ScalarProperty Name="MAKHOAHOC" ColumnName="MAKHOAHOC" />
+          <ScalarProperty Name="NOIDUNGBH" ColumnName="NOIDUNGBH" />
+          <ScalarProperty Name="TENBH" ColumnName="TENBH" />
+          <ScalarProperty Name="MABH" ColumnName="MABH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BINHLUANKHOAHOCs">
+      <EntityTypeMapping TypeName="CODEAMAZModel.BINHLUANKHOAHOC">
+        <MappingFragment StoreEntitySet="BINHLUANKHOAHOC">
+          <ScalarProperty Name="TIME_CMT" ColumnName="TIME_CMT" />
+          <ScalarProperty Name="NOIDUNG_CMT" ColumnName="NOIDUNG_CMT" />
+          <ScalarProperty Name="ANHDAIDIEN_CMT" ColumnName="ANHDAIDIEN_CMT" />
+          <ScalarProperty Name="HOVATEN_CMT" ColumnName="HOVATEN_CMT" />
+          <ScalarProperty Name="MAKH_CMT" ColumnName="MAKH_CMT" />
+          <ScalarProperty Name="USERNAME_CMT" ColumnName="USERNAME_CMT" />
+          <ScalarProperty Name="ID_COMMENT" ColumnName="ID_COMMENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

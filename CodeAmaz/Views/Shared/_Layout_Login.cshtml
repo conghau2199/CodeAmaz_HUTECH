@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<meta charset="utf-8" />
+	<link href="~/Content/css/Login.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="menu">
+		<a href="~/Home/Home"><img src="~/Content/img/Home/logo.png" id="logo1"></a>
+		<ul class="listmenu">
+			<li><a href="~/Home/Home">Trang Chủ</a></li>
+			<li><a href="~/Course/CourseList">Khóa Học</a></li>
+			<li><a href="~/Blog/Home">Diễn Đàn</a></li>
+			<li><a href="~/Home/About">Thông Tin</a></li>
+			<li><a href="~/Home/Contact">Liên hệ</a></li>
+		</ul>
+	</div>
+	<div id="imghomebanner"></div>
+	@RenderBody()
+
+	<footer>
+		<div id="endpage">
+			❤️ &copy; @DateTime.Now.Year - Website design by Hau Ho Cong ❤️
+		</div>
+	</footer>
+</body>
+</html>

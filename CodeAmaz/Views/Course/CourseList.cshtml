@@ -1,0 +1,147 @@
+﻿@using CodeAmaz.Models;
+@{
+	ViewBag.Title = "KhoaHoc";
+	Layout = "~/Views/Shared/_Layout_Custom.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Các khóa học tại CodeAmaz</title>
+	<link href="~/Content/css/KhoaHoc.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="quick-title">
+		<br />
+		<i><a id="tab-link" href="~/Home/Home">Trang chủ</a></i>
+		>
+		<i><a id="no-tab-link" href="~/Course/CourseList">Khóa học</a></i>
+	</div>
+
+	<div class="bannerKH">
+		Học lập trình cùng những chuyên gia hàng đầu tại CodeAmaz
+		<br />
+		<div id="join-banner">Tham gia ngay</div>
+		<form class="noidung-banner" action="~/Course/CourseSearch" method="get">
+			<input id="search-banner" name="keyword" type="text" placeholder="Nhập khóa học cần tìm kiếm" />
+			<input type="submit" id="btn-search" value="Tìm Kiếm" />
+		</form>		
+	</div>
+
+	<div class="khoa-hoc">
+		<div class="title-khoahoc1">Lập Trình Cơ Bản</div>
+		@{ var i = 0;
+			List<KHOAHOC> listkhcb = new List<KHOAHOC>();
+			foreach (KHOAHOC kh in Model)
+			{
+				listkhcb.Add(kh);
+				i++;
+				if (kh.MACD == "COBAN")
+				{
+					<div class="noidung-khoahoc">
+						<div class="anh-khoahoc"><a href="~/Course/CourseDetails/@kh.MAKH"><img src="~/Content/img/KhoaHoc/@kh.ANHKHOAHOC" /></a></div>
+						<div class="ten-khoahoc">@kh.TENKH</div>
+						<div class="tacgia-khoahoc">@kh.TACGIA</div>
+						<div class="sao-khoahoc">⭐⭐⭐⭐⭐</div>
+						@if (@kh.GIA == 0)
+						{
+							<div class="gia-khoahoc">FREE</div>
+						}
+						else
+						{
+							<div class="gia-khoahoc">@string.Format("{0:##,#}", @kh.GIA) VNĐ</div>
+						}
+					</div>
+				}
+
+			}
+		}
+
+		<div class="title-khoahoc2">Lập Trình Nâng Cao</div>
+		@{ var j = 0;
+			List<KHOAHOC> listkhnc = new List<KHOAHOC>();
+			foreach (KHOAHOC kh in Model)
+			{
+				listkhnc.Add(kh);
+				j++;
+				if (kh.MACD == "NANGCAO")
+				{
+					<div class="noidung-khoahoc">
+						<div class="anh-khoahoc"><a href="~/Course/CourseDetails/@kh.MAKH"><img src="~/Content/img/KhoaHoc/@kh.ANHKHOAHOC" /></a></div>
+						<div class="ten-khoahoc">@kh.TENKH</div>
+						<div class="tacgia-khoahoc">@kh.TACGIA</div>
+						<div class="sao-khoahoc">⭐⭐⭐⭐⭐</div>
+						@if (@kh.GIA == 0)
+						{
+							<div class="gia-khoahoc">FREE</div>
+						}
+						else
+						{
+					<div class="gia-khoahoc">@string.Format("{0:##,#}", @kh.GIA) VNĐ</div>
+						}
+					</div>
+				}
+
+			}
+		}
+
+		<div class="title-khoahoc2">Cấu Trúc Dữ Liệu & Giải Thuật</div>
+		@{ var m = 0;
+			List<KHOAHOC> listctdl = new List<KHOAHOC>();
+			foreach (KHOAHOC kh in Model)
+			{
+				listctdl.Add(kh);
+				m++;
+				if (kh.MACD == "CTDL")
+				{
+					<div class="noidung-khoahoc">
+						<div class="anh-khoahoc"><a href="~/Course/CourseDetails/@kh.MAKH"><img src="~/Content/img/KhoaHoc/@kh.ANHKHOAHOC" /></a></div>
+						<div class="ten-khoahoc">@kh.TENKH</div>
+						<div class="tacgia-khoahoc">@kh.TACGIA</div>
+						<div class="sao-khoahoc">⭐⭐⭐⭐⭐</div>
+						@if (@kh.GIA == 0)
+						{
+							<div class="gia-khoahoc">FREE</div>
+						}
+						else
+						{
+					<div class="gia-khoahoc">@string.Format("{0:##,#}", @kh.GIA) VNĐ</div>
+						}
+					</div>
+				}
+
+			}
+		}
+
+		<div class="title-khoahoc2">Các Khóa Học Khác</div>
+		@{ var n = 0;
+			List<KHOAHOC> listkhk = new List<KHOAHOC>();
+			foreach (KHOAHOC kh in Model)
+			{
+				listkhk.Add(kh);
+				n++;
+				if (kh.MACD == "KHAC")
+				{
+					<div class="noidung-khoahoc">
+						<div class="anh-khoahoc"><a href="~/Course/CourseDetails/@kh.MAKH"><img src="~/Content/img/KhoaHoc/@kh.ANHKHOAHOC" /></a></div>
+						<div class="ten-khoahoc">@kh.TENKH</div>
+						<div class="tacgia-khoahoc">@kh.TACGIA</div>
+						<div class="sao-khoahoc">⭐⭐⭐⭐⭐</div>
+						@if (@kh.GIA == 0)
+						{
+							<div class="gia-khoahoc">FREE</div>
+						}
+						else
+						{
+					<div class="gia-khoahoc">@string.Format("{0:##,#}", @kh.GIA) VNĐ</div>
+						}
+					</div>
+				}
+
+			}
+		}
+	</div>
+</body>
+</html>
+

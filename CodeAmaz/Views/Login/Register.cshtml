@@ -1,0 +1,60 @@
+﻿@model CodeAmaz.Models.LOGIN
+@{
+	ViewBag.Title = "DangKi";
+	Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> CodeAmaz - Đăng kí thành viên</title>
+</head>
+<body>
+	<div>
+		<ul class="listmenu">
+			<li id="btnLogin"><a href="/Login/Login">Đăng Nhập</a></li>
+		</ul>
+	</div>
+
+	@using (Html.BeginForm())
+	{		
+		@Html.AntiForgeryToken()
+		<div class="login1">
+			<form class="form-login1">
+				<h1 id="title-login1">Đăng kí CodeAmaz</h1>
+				<p class="done-register">@ViewData["Success"]</p>
+				@Html.ValidationSummary(true)
+
+				<div class="from-lg">
+					@Html.TextBoxFor(m => m.HOVATEN, new { @class = "form-login", @placeholder = "Họ và tên của bạn" })
+					@Html.ValidationMessageFor(m => m.HOVATEN)
+					<p class="err-null">@ViewData["Loi1"]</p>
+				</div>
+
+				<div class="from-lg">
+					@Html.TextBoxFor(m => m.EMAIL, new { @class = "form-login", @placeholder = "Email" })
+					@Html.ValidationMessageFor(m => m.EMAIL)
+					<p class="err-null">@ViewData["Loi2"]</p>
+				</div>
+
+				<div class="from-lg">
+					@Html.TextBoxFor(m => m.USERNAME, new { @class = "form-login", @placeholder = "ID / UserName" })
+					@Html.ValidationMessageFor(m => m.USERNAME)
+					<p class="err-null">@ViewData["Loi3"]</p>
+					<p class="err-null">@ViewBag.error</p>
+				</div>
+
+				<div class="from-lg">
+					@Html.PasswordFor(m => m.PASSWORD, new { @class = "form-login", @placeholder = "Mật Khẩu" })
+					@Html.ValidationMessageFor(m => m.PASSWORD)
+					<p class="err-null">@ViewData["Loi4"]</p>
+				</div>
+
+				<p id="dieukhoan-login"><input type="checkbox" checked />Tôi đồng ý với <a href="#">điều khoản</a> của CodeAmaz</p>
+				<button id="btn-login">Đăng Kí</button>
+			</form>
+		</div>
+	}
+</body>
+</html>
+

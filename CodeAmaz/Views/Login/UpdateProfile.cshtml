@@ -1,0 +1,73 @@
+﻿@using CodeAmaz.Security
+@model CodeAmaz.Models.LOGIN
+@{
+	ViewBag.Title = "ChinhSuaTTTK";
+	Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Cập nhật thông tin tài khoản</title>
+</head>
+<body>
+
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+		<div class="form-info">
+			<h1 id="title-edit">Cập Nhật Thông Tin Tài Khoản</h1>
+			@if (LoginSecurity.UserName.ANHDAIDIEN != null)
+			{
+			<p class="info"><span class="noidung-info">Ảnh đại diện: </span> <img id="avt-small" src="~/Content/img/Home/@LoginSecurity.UserName.ANHDAIDIEN" /></p>
+			}
+			else
+			{
+			<p class="info"><span class="noidung-info">Ảnh đại diện: </span> <img id="avt-small" src="~/Content/img/Home/avt-default.jpg" /></p>
+			}
+
+		<form class="form-info">
+			<p class="info1"><span class="noidung-info">Username: </span>@LoginSecurity.UserName.USERNAME</p>
+			@Html.ValidationSummary(true)
+			<p class="info1">
+				<span class="noidung-info">Họ và tên: </span>
+				@Html.TextBoxFor(m => m.HOVATEN, new { @class = "edit-info", @Value = LoginSecurity.UserName.HOVATEN })
+			</p>
+			<p class="info1">
+				<span class="noidung-info">Email: </span>
+				@Html.TextBoxFor(m => m.EMAIL, new { @class = "edit-info", @Value = LoginSecurity.UserName.EMAIL })
+			</p>
+			<p class="info1">
+				<span class="noidung-info">Số điện thoại: </span>
+				@Html.TextBoxFor(m => m.SDT, new { @class = "edit-info", @Value = LoginSecurity.UserName.SDT })
+			</p>
+			@*<p class="info1">
+			<span class="noidung-info">Ngày sinh: </span>
+			@Html.TextBoxFor(m => m.NGAYSINH, new { @class = "edit-info", @Value = String.Format("{0:dd/MM/yyyy}", @DangNhapSC.UserName.NGAYSINH), Type = "date" })
+			<span class="err-null">@ViewData["Loi1"]</span>
+		</p>*@
+			<p class="info1">
+				<span class="noidung-info">Giới tính: </span>
+				@Html.DropDownListFor(m => m.GIOITINH, new List<SelectListItem>
+				 {
+					new SelectListItem {Text = "Nam"},
+					new SelectListItem {Text = "Nữ"},
+					new SelectListItem {Text = "Giới tính thứ 3"}
+				},
+				new { @class = "edit-info", @Value = LoginSecurity.UserName.GIOITINH })
+			</p>
+			<p class="info1">
+				<span class="noidung-info">Địa chỉ: </span>
+				@Html.TextBoxFor(m => m.DIACHI, new { @class = "edit-info", @Value = LoginSecurity.UserName.DIACHI })
+			</p>
+
+			<p class="change-pw"><a href="~/Login/AccountInfor">Hủy Bỏ</a></p>
+			<button id="update">Cập Nhật</button>
+		</form>
+		</div>
+	}
+</body>
+</html>
+
+
+

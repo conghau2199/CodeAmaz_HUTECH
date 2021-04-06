@@ -1,0 +1,44 @@
+﻿@model CodeAmaz.Models.LOGIN
+@{
+	ViewBag.Title = "DangNhap";
+	Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> CodeAmaz - Đăng nhập vào hệ thống</title>
+</head>
+<body>
+	
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+		<div class="login">
+			<form class="form-login">
+				<h1 id="title-login">Đăng nhập CodeAmaz</h1>
+				@Html.ValidationSummary(true)
+				<p id="viewbag"> @ViewBag.Thongbao</p>
+
+				<div class="from-lg">
+					@Html.TextBoxFor(model => model.USERNAME, new { @class = "form-login", @placeholder = "ID / UserName" })
+					<p class="err-null">@ViewData["Loi1"]</p>
+				</div>
+
+				<div class="from-lg">
+					@Html.PasswordFor(model => model.PASSWORD, new { @class = "form-login", @placeholder = "Mật Khẩu" })
+					<p class="err-null">@ViewData["Loi2"]</p>
+				</div>
+
+				<button id="btn-login">Đăng Nhập</button>
+				<a href="~/Login/ForgotPassword" id="fogot-password">Quên mật khẩu?</a>
+				<p class="checkin">Hoặc đăng nhập với: </p>
+				<img src="~/Content/img/Home/loginfb.png" class="loginimg" />
+				<p class="checkin">Bạn chưa có tài khoản? <a href="~/Login/Register">Đăng Kí</a> </p>
+			</form>
+		</div>
+	}
+
+</body>
+</html>
+

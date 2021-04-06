@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CODEAMAZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHUDE">
+    <Key>
+      <PropertyRef Name="MACD" />
+    </Key>
+    <Property Name="MACD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TENCD" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="KHOAHOCs" Relationship="Self.FK__KHOAHOC__MACD__3D5E1FD2" FromRole="CHUDE" ToRole="KHOAHOC" />
+  </EntityType>
+  <EntityType Name="KHOAHOC">
+    <Key>
+      <PropertyRef Name="MAKH" />
+    </Key>
+    <Property Name="MAKH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TENKH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TACGIA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GIA" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ANHKHOAHOC" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="MUCTIEU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MOTANGAN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MOTAFULL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MACD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CHUDE" Relationship="Self.FK__KHOAHOC__MACD__3D5E1FD2" FromRole="KHOAHOC" ToRole="CHUDE" />
+    <Property Name="SOBAIGIANG" Type="Int32" />
+    <Property Name="ANHMOTA" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DANGKIKHOAHOCs" Relationship="CODEAMAZModel.FK_DANGKIKHOAHOC_KHOAHOC" FromRole="KHOAHOC" ToRole="DANGKIKHOAHOC" />
+    <NavigationProperty Name="BAIHOCs" Relationship="CODEAMAZModel.FK_BAIHOC_KHOAHOC" FromRole="KHOAHOC" ToRole="BAIHOC" />
+    <NavigationProperty Name="BINHLUANKHOAHOCs" Relationship="CODEAMAZModel.FK_BINHLUANKHOAHOC_KHOAHOC" FromRole="KHOAHOC" ToRole="BINHLUANKHOAHOC" />
+  </EntityType>
+  <Association Name="FK__KHOAHOC__MACD__3D5E1FD2">
+    <End Role="CHUDE" Type="Self.CHUDE" Multiplicity="1" />
+    <End Role="KHOAHOC" Type="Self.KHOAHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUDE">
+        <PropertyRef Name="MACD" />
+      </Principal>
+      <Dependent Role="KHOAHOC">
+        <PropertyRef Name="MACD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_CODEAMAZ" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHUDEs" EntityType="Self.CHUDE" />
+    <EntitySet Name="KHOAHOCs" EntityType="Self.KHOAHOC" />
+    <AssociationSet Name="FK__KHOAHOC__MACD__3D5E1FD2" Association="Self.FK__KHOAHOC__MACD__3D5E1FD2">
+      <End Role="CHUDE" EntitySet="CHUDEs" />
+      <End Role="KHOAHOC" EntitySet="KHOAHOCs" />
+    </AssociationSet>
+    <EntitySet Name="LOGINs" EntityType="CODEAMAZModel.LOGIN" />
+    <EntitySet Name="QUYEN_USER" EntityType="CODEAMAZModel.QUYEN_USER" />
+    <AssociationSet Name="FK_LOGIN_QUYEN_USER" Association="CODEAMAZModel.FK_LOGIN_QUYEN_USER">
+      <End Role="QUYEN_USER" EntitySet="QUYEN_USER" />
+      <End Role="LOGIN" EntitySet="LOGINs" />
+    </AssociationSet>
+    <EntitySet Name="CHANGE_PASS" EntityType="CODEAMAZModel.CHANGE_PASS" />
+    <EntitySet Name="DANGKIKHOAHOCs" EntityType="CODEAMAZModel.DANGKIKHOAHOC" />
+    <AssociationSet Name="FK_DANGKIKHOAHOC_KHOAHOC" Association="CODEAMAZModel.FK_DANGKIKHOAHOC_KHOAHOC">
+      <End Role="KHOAHOC" EntitySet="KHOAHOCs" />
+      <End Role="DANGKIKHOAHOC" EntitySet="DANGKIKHOAHOCs" />
+    </AssociationSet>
+    <EntitySet Name="BAIHOCs" EntityType="CODEAMAZModel.BAIHOC" />
+    <AssociationSet Name="FK_BAIHOC_KHOAHOC" Association="CODEAMAZModel.FK_BAIHOC_KHOAHOC">
+      <End Role="KHOAHOC" EntitySet="KHOAHOCs" />
+      <End Role="BAIHOC" EntitySet="BAIHOCs" />
+    </AssociationSet>
+    <EntitySet Name="BINHLUANKHOAHOCs" EntityType="CODEAMAZModel.BINHLUANKHOAHOC" />
+    <AssociationSet Name="FK_BINHLUANKHOAHOC_KHOAHOC" Association="CODEAMAZModel.FK_BINHLUANKHOAHOC_KHOAHOC">
+      <End Role="KHOAHOC" EntitySet="KHOAHOCs" />
+      <End Role="BINHLUANKHOAHOC" EntitySet="BINHLUANKHOAHOCs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="LOGIN">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+      <PropertyRef Name="PASSWORD" />
+    </Key>
+    <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HOVATEN" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
+    <Property Name="GIOITINH" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ID_QUYEN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="QUYEN_USER" Relationship="CODEAMAZModel.FK_LOGIN_QUYEN_USER" FromRole="LOGIN" ToRole="QUYEN_USER" />
+    <Property Name="DIACHI" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ANHDAIDIEN" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="QUYEN_USER">
+    <Key>
+      <PropertyRef Name="ID_QUYEN" />
+    </Key>
+    <Property Name="ID_QUYEN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="TENQUYEN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LOGINs" Relationship="CODEAMAZModel.FK_LOGIN_QUYEN_USER" FromRole="QUYEN_USER" ToRole="LOGIN" />
+  </EntityType>
+  <Association Name="FK_LOGIN_QUYEN_USER">
+    <End Type="CODEAMAZModel.QUYEN_USER" Role="QUYEN_USER" Multiplicity="0..1" />
+    <End Type="CODEAMAZModel.LOGIN" Role="LOGIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUYEN_USER">
+        <PropertyRef Name="ID_QUYEN" />
+      </Principal>
+      <Dependent Role="LOGIN">
+        <PropertyRef Name="ID_QUYEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CHANGE_PASS">
+    <Key>
+      <PropertyRef Name="ID_CHANGE" />
+    </Key>
+    <Property Name="ID_CHANGE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USERNAME_CHANGE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OLDPASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NEWPASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONFIRMNEWPASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TIMECHANGE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="DANGKIKHOAHOC">
+    <Key>
+      <PropertyRef Name="ID_DANGKI" />
+    </Key>
+    <Property Name="ID_DANGKI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USERNAME_DK" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MAKHOAHOC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TENKHOAHOC" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ANHKH" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TIME_DK" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="KHOAHOC" Relationship="CODEAMAZModel.FK_DANGKIKHOAHOC_KHOAHOC" FromRole="DANGKIKHOAHOC" ToRole="KHOAHOC" />
+  </EntityType>
+  <Association Name="FK_DANGKIKHOAHOC_KHOAHOC">
+    <End Type="CODEAMAZModel.KHOAHOC" Role="KHOAHOC" Multiplicity="0..1" />
+    <End Type="CODEAMAZModel.DANGKIKHOAHOC" Role="DANGKIKHOAHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOAHOC">
+        <PropertyRef Name="MAKH" />
+      </Principal>
+      <Dependent Role="DANGKIKHOAHOC">
+        <PropertyRef Name="MAKHOAHOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BAIHOC">
+    <Key>
+      <PropertyRef Name="MABH" />
+    </Key>
+    <Property Name="MABH" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TENBH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NOIDUNGBH" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="MAKHOAHOC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="KHOAHOC" Relationship="CODEAMAZModel.FK_BAIHOC_KHOAHOC" FromRole="BAIHOC" ToRole="KHOAHOC" />
+  </EntityType>
+  <Association Name="FK_BAIHOC_KHOAHOC">
+    <End Type="CODEAMAZModel.KHOAHOC" Role="KHOAHOC" Multiplicity="0..1" />
+    <End Type="CODEAMAZModel.BAIHOC" Role="BAIHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOAHOC">
+        <PropertyRef Name="MAKH" />
+      </Principal>
+      <Dependent Role="BAIHOC">
+        <PropertyRef Name="MAKHOAHOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BINHLUANKHOAHOC">
+    <Key>
+      <PropertyRef Name="ID_COMMENT" />
+    </Key>
+    <Property Name="ID_COMMENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USERNAME_CMT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MAKH_CMT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="HOVATEN_CMT" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ANHDAIDIEN_CMT" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NOIDUNG_CMT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TIME_CMT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="KHOAHOC" Relationship="CODEAMAZModel.FK_BINHLUANKHOAHOC_KHOAHOC" FromRole="BINHLUANKHOAHOC" ToRole="KHOAHOC" />
+  </EntityType>
+  <Association Name="FK_BINHLUANKHOAHOC_KHOAHOC">
+    <End Type="CODEAMAZModel.KHOAHOC" Role="KHOAHOC" Multiplicity="0..1" />
+    <End Type="CODEAMAZModel.BINHLUANKHOAHOC" Role="BINHLUANKHOAHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOAHOC">
+        <PropertyRef Name="MAKH" />
+      </Principal>
+      <Dependent Role="BINHLUANKHOAHOC">
+        <PropertyRef Name="MAKH_CMT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

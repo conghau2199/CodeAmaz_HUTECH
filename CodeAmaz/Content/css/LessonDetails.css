@@ -1,0 +1,58 @@
+﻿.lesson-content {
+	margin-left: 50px;
+	width: 800px;
+	height: 1500px;
+	float: left;
+}
+
+#download {
+	float: right;
+	margin-right: 200px;
+	text-decoration: none;
+}
+
+/*Định dạng phần viết code*/
+.run-code {
+	position: fixed;
+	margin: 50px 50px 0px 900px;
+}
+
+#text {
+	font-size: 25px;
+}
+
+.option-language {
+	width: 150px;
+	height: 30px;
+	margin: 0px 50px 10px 30px;
+	border-radius: 10px;
+}
+
+#myEditor {
+	width: 550px;
+	height: 350px;
+}
+
+#Clear, #Run {
+	width: 60px;
+	height: 30px;
+	margin-left: 20px;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#Clear {
+	background-color: #df322f;
+	border: 1px solid #df322f;
+}
+
+#Run {
+	background-color: #0bb732;
+	border: 1px solid #0bb732;
+}
+
+.clear {
+	clear: both;
+}

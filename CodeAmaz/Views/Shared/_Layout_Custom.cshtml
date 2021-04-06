@@ -1,0 +1,97 @@
+﻿@using CodeAmaz.Security
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<script src="~/Content/js/noel.js"></script>
+	<link href="~/Content/css/TrangChu.css" rel="stylesheet" />
+	<script src="~/Content/js/jquery-3.5.1.min.js"></script>
+	<script src="~/Content/js/Home.js"></script>
+</head>
+<body>
+	<div class="menu">
+		<ul>
+			<li><a href="~/Home/Home"><img src="~/Content/img/Home/logo.png" id="logo1"></a></li>
+			<li><a href="~/Home/Home">Trang Chủ</a></li>
+			<li><a href="~/Course/CourseList">Khóa Học</a></li>
+			<li><a href="~/Blog/Home">Blog</a></li>
+			<li><a href="~/Home/About">Thông Tin</a></li>
+			<li><a href="~/Home/Contact">Liên hệ</a></li>
+			@if (LoginSecurity.UserName != null)
+			{
+				<li>
+					@if (LoginSecurity.UserName.ANHDAIDIEN != null)
+					{
+						<a href="~/Login/AccountInfor">
+							Xin Chào! @LoginSecurity.UserName.HOVATEN
+							<img id="avt-user" src="~/Content/img/Home/@LoginSecurity.UserName.ANHDAIDIEN" />
+						</a>
+					}
+					else
+					{
+						<a href="~/Login/AccountInfor">
+							Xin Chào! @LoginSecurity.UserName.HOVATEN
+							<img id="avt-user" src="~/Content/img/Home/avt-default.jpg" />
+						</a>
+					}
+					<ul class="dropdown">
+						@if (LoginSecurity.UserName.ID_QUYEN == "ADMIN")
+						{
+							<li class="no-tab"><a href="~/Login/AccountManage">🛠 Quản Lý Tài Khoản</a></li>
+							<br />
+						}
+						@if (LoginSecurity.UserName.ID_QUYEN == "ADMIN" || LoginSecurity.UserName.ID_QUYEN == "QTV")
+						{
+							<li class="no-tab"><a href="~/Course/CourseManage">🎬 Quản Lý Khóa Học</a></li>
+							<br />
+						}
+						@if (LoginSecurity.UserName.ID_QUYEN == "MEMBER")
+						{
+							<li class="no-tab"><a href="~/Course/MyCourse">🎬 Khóa Học Của Tôi</a></li>
+							<br />
+						}
+						<li class="no-tab"><a href="~/Login/UpdateProfile">🔎 Cập Nhật Hồ Sơ</a></li>
+						<br />
+						<li class="no-tab"><a href="/Login/Logout">❌ Đăng Xuất</a></li>
+					</ul>
+				</li>
+			}
+			else
+			{
+				<li id="btnLogin"><a href="/Login/Register">Đăng Kí</a></li>
+			}
+		</ul>
+	</div>
+
+	@RenderBody()
+
+	<footer>
+		<div class="quick-click">
+			<div class="quick-link">
+				<a href="~/Home/Home"><img src="~/Content/img/Home/logo.png" id="logo2"></a>
+				<p>
+					CodeAmaz là nền tảng học lập trình trực tuyến,<br />hỗ trợ người dùng trong quá trình tự học<br />một cách chính xác và nhanh chóng.
+				</p>
+			</div>
+			<div class="quick-link">
+				<h2 class="title-end">Liên kết</h2>
+				<p>@Html.ActionLink("Khóa Học", "CourseList", "Course")</p>
+				<p>@Html.ActionLink("Blog", "Home", "Blog")</p>
+			</div>
+			<div class="quick-link">
+				<h2 class="title-end">Thông tin</h2>
+				<p>@Html.ActionLink("Thông Tin CodeAmaz", "About", "Home")</p>
+			</div>
+			<div class="quick-link">
+				<h2 class="title-end">Trợ giúp</h2>
+				<p>@Html.ActionLink("Liên Hệ CodeAmaz", "Contact", "Home")</p>
+			</div>
+		</div>
+
+		<div id="endpage">
+			❤️ &copy; @DateTime.Now.Year - Website design by Hau Ho Cong ❤️
+		</div>
+
+	</footer>
+</body>
+</html>

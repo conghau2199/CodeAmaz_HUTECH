@@ -1,0 +1,47 @@
+﻿@using CodeAmaz.ViewModels
+@model CourseViewModels
+
+@{
+	ViewBag.Title = "ConfirmDangKi";
+	Layout = "~/Views/Shared/_Layout_Custom.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Xác nhận đăng kí</title>
+	<link href="~/Content/css/Confirm_DKKH.css" rel="stylesheet" />
+</head>
+<body>
+	@using (Html.BeginForm())
+	{
+		<div class="xacnhan-dangki">
+			<p id="title-confirm">Xác nhận đăng kí khóa học:  <span id="name-course">@Model.TENKH</span></p>
+			<div class="img-khoahoc"><img src="~/Content/img/KhoaHoc/@Model.ANHKHOAHOC" /></div>
+			<div class="form-content">
+				<p class="title">Tên khóa học: <span class="content">@Model.TENKH</span></p><hr />
+				<p class="title">Tác giả: <span class="content">@Model.TACGIA</span></p><hr />
+				<p class="title">Đánh giá: ⭐⭐⭐⭐⭐</p><hr />
+				<p class="title">Số bài giảng: <span class="content">@Model.SOBAIGIANG</span></p><hr />
+				@if (Model.GIA == 0)
+				{
+					<p class="title">Giá khóa học: <span class="content">FREE</span></p>
+				}
+				else
+				{
+					<div class="title">Giá khóa học: <span class="content">@string.Format("{0:##,#}", Model.GIA) VNĐ</span></div>
+				}
+			</div>
+
+			<form class="luu-dk">
+				@Html.HiddenFor(m => m.MAKH)
+				@Html.HiddenFor(m => m.TACGIA)
+				@Html.HiddenFor(m => m.TENKH)
+				@Html.HiddenFor(m => m.ANHKHOAHOC)
+				<input id="btn-dangki" type="submit" value="Xác Nhận Đăng Kí" />
+			</form>
+		</div>
+	}
+</body>
+</html>
+

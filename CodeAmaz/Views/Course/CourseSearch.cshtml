@@ -1,0 +1,60 @@
+﻿@model List<CodeAmaz.ViewModels.CourseViewModels>
+@{
+	ViewBag.Title = "TimKiemKhoaHoc";
+	Layout = "~/Views/Shared/_Layout_Custom.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tìm kiếm khóa học</title>
+	<link href="~/Content/css/KhoaHoc.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="content">
+		<div class="content_top">
+			<div class="heading">
+				<h3>Kết quả tìm kiếm theo từ khoá: @ViewBag.Keyword</h3>
+			</div>
+			<div class="quick-title">
+				<i><a id="no-tab-link" href="~/Course/CourseList">Xem toàn bộ khóa học</a></i>
+			</div>
+		</div>
+	</div>
+
+	<div class="ketqua-timkiem">
+		@if (Model.Count > 0)
+		{
+			foreach (var kh in Model)
+			{
+				<div class="noidung-khoahoc">
+					<div class="anh-khoahoc"><a href="~/Course/CourseDetails/@kh.MAKH"><img src="~/Content/img/KhoaHoc/@kh.ANHKHOAHOC" /></a></div>
+					<div class="ten-khoahoc">@kh.TENKH</div>
+					<div class="tacgia-khoahoc">@kh.TACGIA</div>
+					<div class="sao-khoahoc">⭐⭐⭐⭐⭐</div>
+					@if (@kh.GIA == 0)
+					{
+						<div class="gia-khoahoc">FREE</div>
+					}
+					else
+					{
+						<div class="gia-khoahoc">@string.Format("{0:##,#}", @kh.GIA) VNĐ</div>
+					}
+				</div>
+			}
+
+		}
+		else
+		{
+			<p class="err-404">
+				Không tìm thấy kết quả cho từ khóa: @ViewBag.Keyword <br />
+				Đừng buồn chúng tôi sẽ sớm cập nhật khóa học này sớm nhất có thể ❤️
+			</p>
+
+		}
+	</div>
+</body>
+</html>
+
+

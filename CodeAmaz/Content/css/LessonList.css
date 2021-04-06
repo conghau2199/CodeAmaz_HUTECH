@@ -1,0 +1,25 @@
+﻿#title {
+	text-align: center;
+	width: 1500px;
+	margin-bottom: 50px;
+	color: #00ADBC;
+}
+
+.name-lesson {
+	width: 1300px;
+	height: 30px;
+	border-radius: 5px;
+	background-color: #F5F5F5;
+	cursor: pointer;
+	margin-left: 100px;
+	padding: 10px 0px 0px 20px;
+}
+
+.name-lesson a {
+	text-decoration: none;
+	color: black;
+}
+
+.clear {
+	margin-bottom: 50px;
+}

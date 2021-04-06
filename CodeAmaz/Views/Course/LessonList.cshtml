@@ -1,0 +1,37 @@
+﻿@using CodeAmaz.Models
+@{
+	ViewBag.Title = "LessonList";
+	Layout = "~/Views/Shared/_Layout_Custom.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Danh sách bài học</title>
+	<link href="~/Content/css/LessonList.css" rel="stylesheet" />
+</head>
+<body>
+	<h1 id="title">Danh sách bài học</h1>
+	<div class="content">
+		@{ 
+			string url = HttpContext.Current.Request.RawUrl.ToString();
+			string makh = url.Substring(url.LastIndexOf("/") + 1);
+		}
+		@{ var i = 0;
+			List<BAIHOC> lessonList = new List<BAIHOC>();
+			foreach (BAIHOC bh in Model)
+			{
+				lessonList.Add(bh);
+				i++;
+				if(bh.MAKHOAHOC == makh)
+				{
+					<p class="name-lesson"><a href="~/Lesson/LessonDetails/@bh.NOIDUNGBH"><span style="color: #00FF00">► </span>@bh.TENBH</a></p>
+				}
+			}
+		}
+	</div>
+	<div class="clear"></div>
+</body>
+</html>
+
+

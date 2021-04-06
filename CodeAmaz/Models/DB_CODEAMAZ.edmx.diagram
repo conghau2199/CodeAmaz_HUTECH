@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3efae72c745e4ea79c442fec6516f830" Name="Diagram1">
+        <EntityTypeShape EntityType="CODEAMAZModel.CHUDE" Width="1.5" PointX="0.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CODEAMAZModel.KHOAHOC" Width="1.5" PointX="3.25" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="CODEAMAZModel.FK__KHOAHOC__MACD__3D5E1FD2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CODEAMAZModel.LOGIN" Width="1.5" PointX="10.25" PointY="0.5" />
+        <EntityTypeShape EntityType="CODEAMAZModel.QUYEN_USER" Width="1.5" PointX="8.125" PointY="0.75" />
+        <AssociationConnector Association="CODEAMAZModel.FK_LOGIN_QUYEN_USER" />
+        <EntityTypeShape EntityType="CODEAMAZModel.CHANGE_PASSWORD" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CODEAMAZModel.CHANGE_PASS" Width="1.5" PointX="8.125" PointY="2.75" />
+        <EntityTypeShape EntityType="CODEAMAZModel.DANGKIKHOAHOC" Width="1.5" PointX="0.625" PointY="2.625" />
+        <AssociationConnector Association="CODEAMAZModel.FK_DANGKIKHOAHOC_KHOAHOC" />
+        <EntityTypeShape EntityType="CODEAMAZModel.BAIHOC" Width="1.5" PointX="5.75" PointY="0.5" />
+        <AssociationConnector Association="CODEAMAZModel.FK_BAIHOC_KHOAHOC" />
+        <EntityTypeShape EntityType="CODEAMAZModel.BINHLUANKHOAHOC" Width="1.5" PointX="5.75" PointY="2.875" />
+        <AssociationConnector Association="CODEAMAZModel.FK_BINHLUANKHOAHOC_KHOAHOC" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

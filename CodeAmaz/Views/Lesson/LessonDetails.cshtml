@@ -1,0 +1,99 @@
+﻿
+@{
+	ViewBag.Title = "LessonDetails";
+	Layout = "~/Views/Shared/_Layout_Custom.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Danh sách bài học</title>
+	<link href="~/Content/css/LessonDetails.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="content">
+		@{
+			string url = HttpContext.Current.Request.RawUrl.ToString();
+			string mabh = url.Substring(url.LastIndexOf("/") + 1);
+			string tenbh = mabh + ".html";
+			string downloadbh = mabh + ".doc";
+		}
+
+		<p><a id="download" href="~/Content/LessonContent/JavaCB/@tenbh" download="@downloadbh">Download Bài Học 📌</a></p>
+
+		<iframe class="lesson-content" src="~/Content/LessonContent/HTMLCB/@tenbh" frameborder="0" scrolling="auto"></iframe>
+	</div>
+
+	<div class="run-code">
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<div class="card">
+					<div class="card-header">
+						<div>
+							<h3 class="text-info">
+								<span id="text">Code Editor</span>
+								<select class="option-language">
+									<option>HTML/CSS/JS</option>
+									<option>C</option>
+									<option>C++</option>
+									<option>Python</option>
+									<option>Java</option>
+									<option>C#</option>
+									<option>Pascal</option>
+								</select>
+								<input type="button" id="Clear" class="btn btn-primary btn-sm" value="Clear" />
+								<input type="button" id="Run" class="btn btn-success btn-sm" value="Run" />
+							</h3>
+						</div>
+					</div>
+					<div class="card-body">
+						<div id="myEditor"></div>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<div class="col-md-6 col-sm-12">
+				<div class="card" style="min-height: 20vh">
+					<div class="card-header">
+						<h3 class="text-info">
+							<span id="text">Output:</span>
+						</h3>
+					</div>
+					<div class="card-body" id="output">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="~/Content/js-html-course/ace.js"></script>
+		<script src="~/Content/js-html-course/bootstrap.min.js"></script>
+		<script src="~/Content/js-html-course/jquery-3.4.1.slim.min.js"></script>
+		<script type="text/javascript">
+			var e = ace.edit('myEditor');
+			e.getSession().setMode("ace/mode/html")
+			e.setTheme("ace/theme/xcode")
+			e.setValue(`<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+</body>
+</html>
+`)
+			$(document).ready(function () {
+				$(document).on('click', "#Run", function () {
+					var code = e.getValue();
+					$("#output").html(code);
+				})
+				$(document).on('click', "#Clear", function () {
+					e.setValue();
+				})
+			});
+		</script>
+	</div>
+
+	<div class="clear"></div>
+</body>
+</html>
+

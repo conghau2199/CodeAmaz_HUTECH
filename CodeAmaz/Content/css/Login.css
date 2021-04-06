@@ -1,0 +1,216 @@
+﻿/*Định dạng chung cho toàn layout*/
+* {
+	font-family: Tahoma;
+	background-color: #F5F5F7;
+}
+
+/*Định dạng background trang web*/
+#imghomebanner {
+	background-image: url('../img/Home/homebanner.jpg');
+	position: absolute;
+	width: 1521px;
+	height: 800px;
+	margin-left:-10px;
+	border-radius: 10px;
+	background-size: cover;
+	z-index: 1;
+	filter: brightness(50%);
+	opacity: 0.8;
+}
+
+/*Định dạng phần menu - tiêu đề*/
+
+.menu {
+
+	width: 1500px;
+	white-space: nowrap;
+}
+
+#logo1 {
+	width: 50px;
+	height: 50px;
+	margin-left:100px;
+	background-size:cover;
+}
+
+.listmenu li a {
+	font-size: 14px;
+	letter-spacing: 1px;
+	text-decoration: none;
+	color: #1e266d;
+	font-style: italic;
+}
+
+	.listmenu li a:hover{
+		color: red;
+	}
+
+.menu, .listmenu, .listmenu li{
+	display: inline-block;
+}
+
+.listmenu li {
+	margin-left:60px;
+	float:left;
+}
+
+#btnLogin {
+	white-space:nowrap;
+	margin:-55px 0px 0px 1200px;
+}
+
+/*Định dang form đang nhập*/
+#viewbag {
+	color: red;
+	text-align: center;
+	margin: -40px 0px 20px 0px;
+	font-style:italic;
+}
+
+.err-null, span.field-validation-error {
+	text-align: center;
+	color: red;
+	margin-top: 10px;
+	margin-bottom: -10px;
+	font-style: italic;
+}
+
+span.field-validation-error
+{
+	display: block;
+}
+
+.done-register {
+	text-align: center;
+	color: lawngreen;
+	margin: 10px 0px 20px 0px;
+	font-style: italic;
+}
+
+.login {
+	background-color: white;
+	width: 400px;
+	height: 600px;
+	margin: 50px 0px 100px 550px;
+	border-radius: 20px;
+	border: 1px solid white;
+	position: relative;
+	z-index: 2;
+}
+
+.login1 {
+	background-color: white;
+	width: 400px;
+	height: 600px;
+	margin: 15px 0px 100px 550px;
+	border-radius: 20px;
+	border: 1px solid white;
+	position: relative;
+	z-index:2;
+}
+
+.form-login1 {
+	background-color: white;
+}
+
+#title-login, #title-login1, .form-login, #btn-login, #fogot-password, .checkin, .checkin a, .loginimg, #dieukhoan-login, .from-lg, .title-lg, #viewbag, .err-null, .done-register, span.field-validation-error {
+	background-color: white;
+}
+
+#title-login {
+	color: #1E266D;
+	text-align: center;
+	margin-bottom: 85px;
+}
+
+#title-login1 {
+	color: #1E266D;
+	text-align: center;
+	margin-bottom: 35px;
+}
+
+.form-login {
+	margin: 30px 0px 0px 50px;
+	width: 275px;
+	height: 40px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	font-style: italic;
+	padding-left: 20px;
+	
+}
+
+	.form-login:hover {
+		border: 1px solid #00FF00;
+	}
+
+	.form-login:focus {
+		box-shadow: 3px 3px 50px #00FF00;
+		outline: 1px solid #00FF00;
+		border: none;
+	}
+
+#btn-login {
+	margin: 50px 0px 20px 50px;
+	text-align: center;
+	width: 300px;
+	height: 40px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	font-style: italic;
+	color: white;
+	font-size: 15px;
+	background: linear-gradient(to bottom right, #0066FF, #CC33FF);
+	cursor: pointer;
+}
+
+	#btn-login:hover {
+		background: linear-gradient(45deg, #CC33FF, #0066FF);
+	}
+
+#fogot-password {
+	margin:20px 0px 20px 0px;
+	text-align: center;
+	font-style: italic;
+	display:block;
+	text-decoration: none;
+}
+
+.checkin {
+	margin: 20px 0px 30px 50px;
+	font-size: 15px;
+	float: left;
+	font-weight:bold;
+}
+
+	.checkin a {
+		margin-left:30px;
+		text-decoration:none;
+	}
+
+.loginimg {
+	width: 50px;
+	margin: 5px 0px 0px 30px;
+}
+
+#dieukhoan-login {
+	margin: 50px 0px 0px 40px;
+	font-style: italic;
+}
+
+#dieukhoan-login a {
+	text-decoration: none;
+}
+/*Định dạng bản quyền*/
+#endpage {
+	margin-left: 550px;
+	clear: left;
+	font-family: Verdana;
+	font-style: italic;
+	white-space: nowrap;
+	position: relative;
+	z-index: 2;
+	background-color: #979798;
+	width: 400px;
+	color:white;
+}

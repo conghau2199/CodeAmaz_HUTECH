@@ -1,0 +1,30 @@
+﻿@using CodeAmaz.ViewModels
+@model IEnumerable<CommentViewModels>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="~/Content/css/CommentCourse.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="list-cmt">
+		@foreach (var a in Model)
+		{
+			<div>
+				@if (a.ANHDAIDIEN_CMT != null)
+				{
+					<p class="title-cmt"><img id="avt-cmt1" src="~/Content/img/Home/@a.ANHDAIDIEN_CMT" /><b>@a.HOVATEN_CMT</b></p>
+				}
+				else
+				{
+					<p class="title-cmt"><img id="avt-cmt1" src="~/Content/img/Home/avt-default.jpg" /><b>@a.HOVATEN_CMT</b></p>
+				}
+
+				<p class="content-cmt">@a.NOIDUNG_CMT</p>
+				<p class="time-cmt">@a.TIME_CMT</p>
+				<hr />
+			</div>
+		}
+	</div>
+</body>
+</html>

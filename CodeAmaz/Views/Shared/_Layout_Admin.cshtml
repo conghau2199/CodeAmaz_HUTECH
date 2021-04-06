@@ -1,0 +1,68 @@
+﻿@using CodeAmaz.Security
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link href="~/Content/css/Admin.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="menu">
+		<ul>
+			<li><a href="~/Home/Home"><img src="~/Content/img/Home/logo.png" id="logo1"></a></li>
+			<li><a href="~/Home/Home">Trang Chủ</a></li>
+			<li><a href="~/Course/CourseList">Khóa Học</a></li>
+			<li><a href="~/Blog/Home">Diễn Đàn</a></li>
+			<li><a href="~/Home/About">Thông Tin</a></li>
+			<li><a href="~/Home/Contact">Liên hệ</a></li>
+			@if (LoginSecurity.UserName != null)
+			{
+		<li>
+			@if (LoginSecurity.UserName.ANHDAIDIEN != null)
+			{
+				<a href="~/Login/AccountInfor">
+					Xin Chào! @LoginSecurity.UserName.HOVATEN
+					<img id="avt-user" src="~/Content/img/Home/@LoginSecurity.UserName.ANHDAIDIEN" />
+				</a>
+			}
+			else
+			{
+				<a href="~/Login/AccountInfor">
+					Xin Chào! @LoginSecurity.UserName.HOVATEN
+					<img id="avt-user" src="~/Content/img/Home/avt-default.jpg" />
+				</a>
+			}
+			<ul class="dropdown">
+				@if (LoginSecurity.UserName.ID_QUYEN == "ADMIN")
+				{
+					<li class="no-tab"><a href="~/Login/AccountManage">🛠 Quản Lý Tài Khoản</a></li> <br />
+				}
+				@if (LoginSecurity.UserName.ID_QUYEN == "ADMIN" || LoginSecurity.UserName.ID_QUYEN == "QTV")
+				{
+					<li class="no-tab"><a href="~/Course/CourseManage">🎬 Quản Lý Khóa Học</a></li> <br />
+				}
+				@if (LoginSecurity.UserName.ID_QUYEN == "MEMBER")
+				{
+					<li class="no-tab"><a href="~/Course/MyCourse">🎬 Khóa Học Của Tôi</a></li> <br />
+				}
+				<li class="no-tab"><a href="~/Login/UpdateProfile">🔎 Cập Nhật Hồ Sơ</a></li> <br />
+				<li class="no-tab"><a href="/Login/Logout">❌ Đăng Xuất</a></li>
+			</ul>
+		</li>
+			}
+			else
+			{
+				<li id="btnLogin"><a href="/Login/Register">Đăng Kí</a></li>
+			}
+		</ul>
+	</div>
+
+	<div id="imghomebanner"></div>
+	@RenderBody()
+
+	<footer>
+		<div id="endpage">
+			❤️ &copy; @DateTime.Now.Year - Website design by Hau Ho Cong ❤️
+		</div>
+	</footer>
+</body>
+</html>

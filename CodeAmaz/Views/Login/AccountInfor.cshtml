@@ -1,0 +1,58 @@
+﻿@using CodeAmaz.Security
+@{
+	ViewBag.Title = "ThongTinTaiKhoan";
+	Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Thông tin tài khoản</title>
+</head>
+<body>
+	<form class="form-info">
+		@if (LoginSecurity.UserName.ANHDAIDIEN != null)
+		{
+			<h1 id="title-info">
+				<img id="avt-big" src="~/Content/img/Home/@LoginSecurity.UserName.ANHDAIDIEN" />
+				@LoginSecurity.UserName.HOVATEN
+			</h1>
+			if (LoginSecurity.UserName.ID_QUYEN != null)
+			{
+				<span id="id-quyen">@LoginSecurity.UserName.ID_QUYEN</span>
+			}
+			else
+			{
+				<span id="id-quyen">MEMBER</span>
+			}
+
+		}
+		else
+		{
+			<h1 id="title-info">
+				<img id="avt-big" src="~/Content/img/Home/avt-default.jpg" />
+				@LoginSecurity.UserName.HOVATEN
+			</h1>
+			if (LoginSecurity.UserName.ID_QUYEN != null)
+			{
+				<span id="id-quyen">@LoginSecurity.UserName.ID_QUYEN</span>
+			}
+			else
+			{
+				<span id="id-quyen">MEMBER</span>
+			}
+		}
+		<p class="info"><span class="noidung-info">Username: </span>@LoginSecurity.UserName.USERNAME </p>
+		<p class="info"><span class="noidung-info">Email: </span>@LoginSecurity.UserName.EMAIL</p>
+		<p class="info"><span class="noidung-info">Số điện thoại: </span>@LoginSecurity.UserName.SDT</p>
+		<p class="info"><span class="noidung-info">Ngày sinh: </span>@String.Format("{0:dd/MM/yyyy}", LoginSecurity.UserName.NGAYSINH)</p>
+		<p class="info"><span class="noidung-info">Giới tính: </span>@LoginSecurity.UserName.GIOITINH</p>
+		<p class="info"><span class="noidung-info">Địa chỉ: </span>@LoginSecurity.UserName.DIACHI</p>
+		<p class="change-pw"><a href="~/Login/ChangePassword">Thay Đổi Mật Khẩu</a></p>
+		<p class="change-info"><a href="~/Login/UpdateProfile">Cập Nhật Hồ Sơ</a></p>
+	</form>
+</body>
+</html>
+
+
+

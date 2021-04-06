@@ -1,0 +1,27 @@
+﻿/*Định dạng phần danh sách các bình luận*/
+.list-cmt {
+	margin-left: 350px;
+	width: 750px;
+}
+
+
+#avt-cmt1 {
+	vertical-align: middle;
+	width: 40px;
+	border-radius: 25px;
+	margin-right: 30px;
+}
+
+.content-cmt {
+	margin-left: 70px;
+	padding: 20px;
+	width: 650px;
+	height: auto;
+	border-radius: 20px;
+	background-color: #d5cccc;
+}
+
+.time-cmt {
+	margin-left: 550px;
+	font-style: italic;
+}

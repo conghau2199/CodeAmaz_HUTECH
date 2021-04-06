@@ -1,0 +1,115 @@
+﻿@using CodeAmaz.Security;
+@using CodeAmaz.ViewModels;
+@model CourseViewModels
+
+@{
+	ViewBag.Title = "ChiTietKhoaHoc";
+	Layout = "~/Views/Shared/_Layout_Custom.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chi tiết khóa học -> @Model.MAKH</title>
+	<link href="~/Content/css/ChiTietKhoaHoc.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="quick-title">
+		<br />
+		<i><a id="tab-link" href="~/Home/Home">Trang chủ</a></i>
+		>
+		<i><a id="no-tab-link" href="~/Course/CourseList">Khóa học</a></i>
+		>
+		<i><a id="no-tab-link" href="~/Course/CourseDetails/@Model.MAKH">@Model.TENKH</a></i>
+	</div>
+
+	<div class="gioithieu-khoahoc">
+		<div class="img-khoahoc"><img src="~/Content/img/KhoaHoc/@Model.ANHKHOAHOC" /></div>
+		<div class="ten-khoahoc">@Model.TENKH</div>
+		<div class="thongtin-khoahoc">
+			<p>Tác giả: <span>@Model.TACGIA</span></p>
+			<p>Đánh giá: ⭐⭐⭐⭐⭐</p>
+			<p>Giáo trình: <span>@Model.SOBAIGIANG bài giảng</span></p>
+		</div>
+		<div class="motangan-khoahoc">@Model.MOTANGAN</div>
+	</div>
+
+	<!--Thiết lập quyền hạn-->
+	<div class="dangki">
+		@if (LoginSecurity.UserName == null)
+		{
+			if (Model.GIA == 0)
+			{
+				<div class="btn-dangki"><a href="~/Login/Login">ĐĂNG KÍ NGAY / FREE</a></div>
+			}
+			else
+			{
+				<div class="btn-dangki"><a href="~/Login/Login">ĐĂNG KÍ NGAY / @string.Format("{0:##,#}", Model.GIA) VNĐ</a></div>
+			}
+		}
+		else if (LoginSecurity.UserName.ID_QUYEN == "MEMBER")
+		{
+			if (Model.GIA == 0)
+			{
+				<div class="btn-dangki"><a href="~/Course/ConfirmCourseRegister/@Model.MAKH">ĐĂNG KÍ NGAY / FREE</a></div>
+			}
+			else
+			{
+				<div class="btn-dangki"><a href="~/Course/ConfirmCourseRegister/@Model.MAKH">ĐĂNG KÍ NGAY / @string.Format("{0:##,#}", Model.GIA) VNĐ</a></div>
+			}
+		}
+		else
+		{
+			<div class="btn-dangki"><a href="#">🛠 CHỈNH SỬA KHÓA HỌC</a></div>
+		}
+	</div>
+
+	<div class="noidung-khoahoc">
+		<p class="title-ndkh">Thông tin khóa học</p>
+		<div class="soluoc-khoahoc">
+			<p id="title-ndkh2">Tìm hiểu về khóa học @Model.TENKH: </p>
+			@if (Model.ANHMOTA != null)
+			{
+				<p id="img-gioithieukh">
+					<img src="~/Content/img/ChiTietKhoaHoc/@Model.ANHMOTA" />
+				</p>
+			}
+			<p id="noidung-khoahoc">@Html.Raw(Model.MOTAFULL)</p>
+		</div>
+		<div class="muctieu-khoahoc">
+			<p id="title-ndkh2">Mục tiêu khóa học: </p>
+			<p id="noidung-khoahoc">@Html.Raw(Model.MUCTIEU)</p>
+		</div>
+	</div>
+
+	<div class="cmt">
+		<h2 id="title-cmt">ĐÁNH GIÁ | NHẬN XÉT | BÌNH LUẬN VỀ KHÓA HỌC</h2>
+		@if (LoginSecurity.UserName != null)
+		{
+			<!-- -->
+			<form action="/Course/Comment/@Model.MAKH" method="post" class="form-cmt">
+				<div>
+					@if (LoginSecurity.UserName.ANHDAIDIEN != null)
+					{
+						<img id="avt-cmt" src="~/Content/img/Home/@LoginSecurity.UserName.ANHDAIDIEN" />
+					}
+					else
+					{
+						<img id="avt-cmt" src="~/Content/img/Home/avt-default.jpg" />
+					}
+					@Html.TextArea("textCMT", "", htmlAttributes: new { @class = "TextBoxCMT", @placeholder = "" })
+				</div>
+				<input id="btn-cmt" type="submit" value="Bình luận" />
+			</form>
+		}
+		else
+		{
+			<div class="not-login-cmt">Để đánh giá, nhận xét, bình luận về khóa học. Vui lòng <a href="~/Login/Login">đăng nhập</a></div>
+		}
+		<h3 class="title-list-cmt">Danh sách bình luận</h3>
+		@{Html.RenderPartial("ViewCMT", Model.Comment);}
+	</div>
+</body>
+</html>
+
